@@ -51,7 +51,7 @@ export const Login = async (req, res, next) => {
             if (err) throw err;
 
             const { password, ...otherDetails } = user._doc;
-            console.log("setting cookie with this token => ", tFoken);
+            console.log("setting cookie with this token => ", token);
             res.cookie("token", token, {
                 httpOnly: true,
                 sameSite: "none",
@@ -62,8 +62,7 @@ export const Login = async (req, res, next) => {
             });
 
         });
-
-        return res
+        
     } catch (err) {
         next(err);
         res.status(500).json("Internal server error!");
