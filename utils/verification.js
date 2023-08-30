@@ -4,7 +4,7 @@ import { createError } from "../utils/error.js";
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
   console.log('req',req);
-  console.log('req', req.cookies);
+  console.log('req-cookies', req.cookies);
   if (!token) {
     console.log("no token found");
     return res.status(401).json("You are not authenticated!");

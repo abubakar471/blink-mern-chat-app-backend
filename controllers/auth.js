@@ -51,12 +51,14 @@ export const Login = async (req, res, next) => {
             if (err) throw err;
 
             const { password, ...otherDetails } = user._doc;
-            console.log("setting cookie with this token => ", token);
-            res.cookie("token", token);
-            return res.status(200).json({
-                user: { ...otherDetails },
-                token
-            });
+            console.log("setting cookie with this token => ", tFoken);
+            res.cookie("token", token,{sameSite : "none", secure : true});
+         
+        });
+
+        return res.status(200).json({
+            user: { ...otherDetails },
+            token
         });
     } catch (err) {
         next(err);
