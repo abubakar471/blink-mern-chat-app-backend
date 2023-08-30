@@ -52,7 +52,11 @@ export const Login = async (req, res, next) => {
 
             const { password, ...otherDetails } = user._doc;
             console.log("setting cookie with this token => ", tFoken);
-            res.cookie("token", token, { sameSite: "none", secure: true }).status(200).json({
+            res.cookie("token", token, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: "false"
+            }).status(200).json({
                 user: { ...otherDetails },
                 token
             });
