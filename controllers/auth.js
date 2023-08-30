@@ -52,7 +52,8 @@ export const Login = async (req, res, next) => {
 
             const { password, ...otherDetails } = user._doc;
             console.log("setting cookie with this token => ", token);
-            res.cookie("token", token).status(200).json({
+            res.cookie("token", token);
+            return res.status(200).json({
                 user: { ...otherDetails },
                 token
             });
@@ -67,7 +68,7 @@ export const Login = async (req, res, next) => {
 export const Logout = async (req, res, next) => {
     try {
         res.cookie("token", '').status(200).json({
-            ok : true
+            ok: true
         });
     } catch (err) {
         next(err);
