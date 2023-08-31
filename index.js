@@ -108,6 +108,10 @@ websocketserver.on("connection", (connection, req) => {
         clearTimeout(connection.deathTimer);
     })
 
+    connection.onerror = function () {
+        console.log("websocket error occured")
+    }
+
     // read username and user id using request headers token
     const token = req.headers['sec-websocket-protocol']
 
